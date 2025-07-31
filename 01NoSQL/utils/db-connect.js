@@ -5,12 +5,11 @@ const uri = process.env.MONGO_URI;
 
 let _db;
 
-const mongoConnect = async (callback) => {
+const mongoConnect = async () => {
   try {
     const client = await MongoClient.connect(uri);
     console.log("Db connected!");
     _db = client.db();
-    callback();
   } catch (err) {
     console.error("MongoDB connection error:", err);
     throw err;

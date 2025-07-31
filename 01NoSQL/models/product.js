@@ -7,7 +7,7 @@ class Product {
     this.price = price;
     this.desc = desc;
     this.imageUrl = imageUrl;
-    this.userId = userId;
+    this.userId = new ObjectId(userId);
   }
 
   save() {
