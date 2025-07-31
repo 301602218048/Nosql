@@ -20,4 +20,24 @@ const addCart = async (req, res) => {
   }
 };
 
-module.exports = addCart;
+const deleteCartItem = async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const userId = req.body._id;
+
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ msg: "User not found" });
+
+    const updatedUser = await user.deleteFromCart(productId);
+
+    res.json({
+      msg: "Product deleted to cart",
+      cart: updatedUser.cart.items,
+    });
+  } catch (err) {
+    console.error("Error deleting product to cart:", err);
+    res.status(500).json({ msg: "Internal Server Error", error: err.message });
+  }
+};
+
+module.exports = { addCart, deleteCartItem };
