@@ -5,6 +5,8 @@ const User = require("./models/user");
 const Product = require("./models/product");
 const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
+const cartRouter = require("./routes/cartRoutes");
+const orderRouter = require("./routes/orderRoutes");
 dotenv.config();
 
 const app = express();
@@ -13,6 +15,8 @@ app.use(express.json());
 
 app.use("/user", userRoutes);
 app.use("/product", productRoutes);
+app.use("/cart", cartRouter);
+app.use("/order", orderRouter);
 
 const port = process.env.PORT || 3000;
 (async () => {
