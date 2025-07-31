@@ -4,6 +4,7 @@ const connectDB = require("./utils/db-connect");
 const productRouter = require("./routes/productRoutes");
 const userRouter = require("./routes/userRoutes");
 const cartRouter = require("./routes/cartRoutes");
+const orderRouter = require("./routes/orderRoutes");
 const Product = require("./models/product");
 
 connectDB();
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/product", productRouter);
 app.use("/user", userRouter);
 app.use("/cart", cartRouter);
+app.use("/order", orderRouter);
 
 app.listen(PORT, () => {
   console.log(`server is running on PORT ${PORT}`);
